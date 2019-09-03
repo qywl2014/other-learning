@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Set;
 
 public class GetTest {
     public static void main(String[] args) throws Exception {
@@ -25,6 +26,11 @@ public class GetTest {
             sB.append(tempLine);
         }
         System.out.println(sB);
+        Set<String> keySet=httpURLConnection.getHeaderFields().keySet();
+        for(String key:keySet){
+            String value=httpURLConnection.getHeaderField(key);
+            System.out.println("--"+key+" "+value);
+        }
         rd.close();
     }
 }
