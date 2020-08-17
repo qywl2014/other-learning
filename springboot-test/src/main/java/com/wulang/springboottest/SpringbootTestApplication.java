@@ -9,8 +9,6 @@ public class SpringbootTestApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringbootTestApplication.class, args);
-        Dog dog = context.getBean("ShaSha",Dog.class);
-        System.out.println(dog.name);
     }
 
 }
