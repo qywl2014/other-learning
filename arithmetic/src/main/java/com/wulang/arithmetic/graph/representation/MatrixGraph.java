@@ -3,6 +3,9 @@ package com.wulang.arithmetic.graph.representation;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 邻接矩阵（图太稀疏会浪费空间、时间）
+ */
 public class MatrixGraph {
     public static void main(String[] args) {
         Node[][] mg = getMatrixGraph();
@@ -27,7 +30,14 @@ public class MatrixGraph {
         return data;
     }
 
-    private static void BFS(Node[][] data, int a) {
+    private static void dfs(Node[][] data, int a){
+
+    }
+
+    /**
+     * 广度优先搜索
+     */
+    private static void bfs(Node[][] data, int a) {
         int count=0;
         Queue<Node> queue=new LinkedList<>();
         queue.add(data[a][a+1]);
