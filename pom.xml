@@ -10,10 +10,10 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>http-test</module>
-      <module>arithmetic</module>
+    <module>arithmetic</module>
     <module>spring-test</module>
-      <module>springboot-test</module>
-      <module>java-test</module>
+    <module>springboot-test</module>
+    <module>java-test</module>
   </modules>
 
   <name>other-learning</name>
