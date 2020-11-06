@@ -12,7 +12,7 @@
     <module>http-test</module>
       <module>arithmetic</module>
     <module>spring-test</module>
-      <module>java-test</module>
+      <module>springboot-test</module>
       <module>java-test</module>
   </modules>
 
