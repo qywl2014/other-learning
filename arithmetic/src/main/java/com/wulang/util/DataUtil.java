@@ -17,11 +17,18 @@ public class DataUtil {
                 .toArray();
     }
 
-    private static void printArray(int[] input) {
+    public static void printArray(int[] input) {
         for (int i : input) {
             System.out.print(i + " ");
         }
         System.out.println();
+    }
+
+    public static void swap(int[] input, int i, int j) {
+        int temp = input[i];
+        input[i] = input[j];
+        input[j] = temp;
+
     }
 
     public static void sortTest(Consumer<int[]> sort, int times) {
