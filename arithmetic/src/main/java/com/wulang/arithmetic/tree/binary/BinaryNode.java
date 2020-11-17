@@ -1,9 +1,5 @@
 package com.wulang.arithmetic.tree.binary;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
 public class BinaryNode {
     public int value;
 
@@ -15,11 +11,6 @@ public class BinaryNode {
         this.value = value;
         this.left = left;
         this.right = right;
-    }
-
-    public static void main(String[] args) {
-        BinaryNode binaryNode = generateBinaryTree();
-        preOrder(binaryNode);
     }
 
     //
@@ -42,41 +33,5 @@ public class BinaryNode {
         BinaryNode b3 = new BinaryNode(3, b6, b7);
 
         return new BinaryNode(1, b2, b3);
-    }
-
-    /**
-     * 先根次序遍历
-     */
-    public static void preOrder(BinaryNode root) {
-        if (root == null) {
-            return;
-        }
-        System.out.println(root.value);
-        preOrder(root.left);
-        preOrder(root.right);
-    }
-
-    /**
-     * 中根次序遍历
-     */
-    public static void inOrder(BinaryNode root) {
-
-    }
-
-    /**
-     * 后根次序遍历
-     */
-    public static void postOrder(BinaryNode root) {
-
-    }
-
-    /**
-     * 层次遍历
-     */
-    public static void levelOrder(BinaryNode root){
-        Queue queue = new LinkedList();
-        queue.add(root);
-
-
     }
 }
