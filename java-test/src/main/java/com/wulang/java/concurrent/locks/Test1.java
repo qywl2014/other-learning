@@ -1,4 +1,4 @@
-package com.wulang.java.concurrent;
+package com.wulang.java.concurrent.locks;
 
 import java.util.concurrent.locks.ReentrantLock;
 

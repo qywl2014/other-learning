@@ -2,6 +2,7 @@ package com.wulang.java.concurrent.locks;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
@@ -16,8 +17,81 @@ import java.util.concurrent.locks.Lock;
  * It also supports conditions and exposes one of the instrumentation methods
  */
 public class Mutex implements Lock, java.io.Serializable {
+
+    public static void main(String[] args) throws Exception {
+        conditionTest();
+    }
+
+    private static void conditionTest(){
+        Mutex lock = new Mutex();
+        Condition condition = lock.newCondition();
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            lock.lock();
+            try {
+                condition.signal();
+                System.out.println("1");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+
+        lock.lock();
+        try {
+            System.out.println("2 before");
+            condition.await();
+            System.out.println("2 after");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    private static void testOrder(){
+        Mutex lock = new Mutex();
+        createThread(lock,1);
+        createThread(lock,2);
+        createThread(lock,3);
+        createThread(lock,4);
+        createThread(lock,5);
+        createThread(lock,6);
+        createThread(lock,7);
+
+        lock.lock();
+        try {
+            Thread.sleep(8000);
+            System.out.println("0");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    private static void createThread(Lock lock, int second) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(second * 1000);
+                lock.lock();
+                System.out.println(second);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+    }
+
     // Our internal helper class
-    private static class Sync extends AbstractQueuedSynchronizer {
+    private static class Sync extends MyAQS {
         // Reports whether in locked state
         protected boolean isHeldExclusively() {
             return getState() == 1;

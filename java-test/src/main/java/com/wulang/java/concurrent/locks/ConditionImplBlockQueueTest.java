@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ConditionTest {
+public class ConditionImplBlockQueueTest {
     public static void main(String[] args) throws Exception {
         System.out.println("start...");
         MyBlockQueue myBlockQueue = new MyBlockQueue(3);
